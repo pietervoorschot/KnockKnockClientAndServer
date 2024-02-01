@@ -2,20 +2,23 @@ package Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.logging.Logger;
 
 public class Server {
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
         boolean listening = true;
+        Logger logger = Logger.getLogger(Server.class.getName());
+
 
         try {
             serverSocket = new ServerSocket(4444);
         } catch (IOException e) {
-            System.err.println("Could not listen on port: 4444.");
+            logger.info("Could not listen on port: 4444");
             System.exit(-1);
         }
 
-        System.out.println("Server started. Listening on port 4444...");
+        logger.info("Server started. Listening on port 4444...");
 
         try {
             while (listening) {
@@ -23,14 +26,14 @@ public class Server {
             }
         }
         catch (IOException e) {
-            System.err.println("Error accepting client connection.");
+            logger.info("Error accepting client connection.");
         }
         finally {
             try {
                 serverSocket.close();
             }
             catch (IOException e) {
-                System.err.println("Error closing server socket.");
+                logger.info("Error closing server socket.");
             }
         }
     }

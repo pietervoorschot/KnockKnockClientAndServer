@@ -22,7 +22,8 @@ public class ServerThread extends Thread {
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
-            String inputLine, outputLine;
+            String inputLine;
+            String outputLine;
 
             // Knock Knock Protocol.Protocol
             Protocol kkp = new Protocol();
